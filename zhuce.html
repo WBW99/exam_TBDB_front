@@ -4,15 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>注册</title>
 <link type="text/css" rel="stylesheet" href="css/zhuce.css" />
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function () {
-	var height=$(document).height();
-	$('.main').css('height',height);
-})
-</script>
 </head>
-
 <body>
 <div class="main">
   <div class="main0">
@@ -27,20 +19,29 @@ $(document).ready(function () {
             <div class="pp">注册</div>
         </div>
         <div class="sub"><p>已经注册？<a href="index.html"><span class="blue">请登录</span></a></p></div>
-        <div class="txt">
-            <span style="letter-spacing:10px;">手机号:</span>
-            <input name="" type="text" class="txtphone" placeholder="请输入手机号码"/>
-        </div>
-        <div class="txt">
-            <span style=" float:left;letter-spacing:10px;">验证码:</span>
-            <input name="" type="text" class="txtyzm" placeholder="请输入验证码"/>
-            <img src="images/yanzhengma.png" class="yzmimg"/>
-        </div>
-        <div class="xieyi">
-            <input name="" type="checkbox" value="" checked="checked"/>
-            我已经阅读并遵守 <span class="blue" style="cursor:pointer">《光子金融服务协议》</span>
-        </div>
-        <a href="zhuce1.html"><div class="xiayibu">下一步 > </div></a>
+         <div class="txt txt0">
+             <span style="letter-spacing:8px;">用户名:</span>
+             <input name="" type="text" class="txtphone" placeholder="请输入用户名"/>
+         </div>
+         <div class="txt txt0">
+             <span style="letter-spacing:15px;">账号:</span>
+             <input name="" type="text" class="txtphone" placeholder="请输入账号"/>
+         </div>
+         <div class="txt txt0">
+             <span style="letter-spacing:4px;">登录密码:</span>
+             <input name="" type="text" class="txtphone" placeholder="请输入密码"/>
+         </div>
+         <div class="txt">
+             <span style="letter-spacing:8px;">手机号:</span>
+             <input name="" type="text" class="txtphone" placeholder="请输入手机号码"/>
+         </div>
+         <div class="txt txt0">
+             <span style="letter-spacing:15px;">邮箱:</span>
+             <input name="" type="text" class="txtphone" placeholder="请输入邮箱"/>
+         </div>
+         <div class="txt txt0">
+             <div class="zhucebtn">确认注册</div>
+         </div>
      </div>
   </div>
 </div>
@@ -48,8 +49,37 @@ $(document).ready(function () {
 <div class="footer">
   <div class="footer0">
      <div class="footer_l">使用条款 | 隐私保护</div>
-     <div class="footer_r">© 2015 （杭州）金融信息服务有限公司    更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></div>
+     <div class="footer_r">© 2021 （石家庄）天亮教育    </div>
   </div> 
 </div>
 </body>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var height=$(document).height();
+        $('.main').css('height',height);
+    })
+</script>
+<script>
+    $(".zhucebtn").eq(0).click(function (){
+        let jsonData={};
+        jsonData.username=$(".txtphone").eq(0).val();
+        jsonData.acc=$(".txtphone").eq(1).val();
+        jsonData.pwd=$(".txtphone").eq(2).val();
+        jsonData.phone=$(".txtphone").eq(3).val();
+        jsonData.email=$(".txtphone").eq(4).val();
+        $.ajax({
+            url:"http://localhost:8080/exam_TDBD_SSM/register",
+            type:"post",
+            contentType:"application/json",
+            dataType:"json",
+            data:JSON.stringify(jsonData),
+            success:function (result){
+                if (result.mark){
+                    window.location.href="zhuceSucc.html";
+                }
+            }
+        })
+    })
+</script>
 </html>
