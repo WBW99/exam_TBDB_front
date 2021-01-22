@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>modifyQuestion</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>题干</td>
+                <td><input type="text" id="stem"></td>
+            </tr>
+            <tr>
+                <td>答案</td>
+                <td id="type"></td></tr>
+            <tr>
+                <td></td>
+                <td><button id="btn">提交</button></td></tr>
+        </table>
+    </div>
+</body>
+<script src="js/jquery-3.5.1.js"></script>
+<script src="js/questionBank.js"></script>
+<script>
+    //传值
+    function modifyInfo(id,stem,answer,score,type,createtime){
+        if (type==="单选题"){
+            $("#type").appendChild($("<input type='radio' class='newRadio'>").text("A"))
+            $("#type").appendChild($("<input type='radio' class='newRadio'>").text("B"))
+            $("#type").appendChild($("<input type='radio' class='newRadio'>").text("C"))
+            $("#type").appendChild($("<input type='radio' class='newRadio'>").text("D"))
+            $("#but").click(function (){
+                let stem = $("#stem").val();
+                for (let o = 1;o<$(".newRadio").length;o++){
+                    if ($(".newRadio")[o].checked){
+                        var choise = this.val();
+                    }
+                }
+                let jsonData={};
+                jsonData.id = id;
+                jsonData.stem = stem;
+                jsonData.answer = choise;
+                $.ajax({
+                    url:"http://localhost:8080/exam_TBDB_SSM/modifyQuestionContent",
+                    type:"post",
+                    contentType:"application/json",
+                    dataType:"json",
+                    data:JSON.stringify(jsonData),
+                    success:function (result){
+                        let index = parent.layer.getFrameIndex(window.name);
+                        console.log(result);
+                        if (result){
+                            parent.layer.close(index);
+                            parent.layer.msg("修改成功！")
+                        }else {
+                            parent.layer.close(index);
+                            parent.layer.msg("修改失败！")
+                        }
+                    }
+                })
+            })
+        }else{
+            $("#type").appendChild($("<input type='text' class='content'>").val(answer))
+            $("#but").click(function (){
+                let stem = $("#stem").val();
+                let answer1 = $(".content").val();
+                let jsonData={};
+                jsonData.id = id;
+                jsonData.stem = stem;
+                jsonData.answer = answer1;
+                $.ajax({
+                    url:"http://localhost:8080/exam_TBDB_SSM/modifyQuestionContent",
+                    type:"post",
+                    contentType:"application/json",
+                    dataType:"json",
+                    data:JSON.stringify(jsonData),
+                    success:function (result){
+                        let index = parent.layer.getFrameIndex(window.name);
+                        console.log(result);
+                        if (result){
+                            parent.layer.close(index);
+                            parent.layer.msg("修改成功！")
+                        }else {
+                            parent.layer.close(index);
+                            parent.layer.msg("修改失败！")
+                        }
+                    }
+                })
+            })
+        }
+
+
+    }
+</script>
+</html>
