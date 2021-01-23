@@ -69,8 +69,8 @@
         jsonData.phone=$(".txtphone").eq(3).val();
         jsonData.email=$(".txtphone").eq(4).val();
         $.ajax({
-            url:"http://localhost:8080/exam_TDBD_SSM/register",
-            type:"post",
+            url:"http://localhost:8080/exam_TBDB_SSM2/register",
+            type:"POST",
             contentType:"application/json",
             dataType:"json",
             data:JSON.stringify(jsonData),
