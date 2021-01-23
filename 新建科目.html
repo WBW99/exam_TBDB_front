@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新建科目</title>
+    <style>
+        .tableOne{
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<!--新建科目-->
+    <div class="tableOne">
+        <table>
+            <tr>
+                <td>科目类型</td>
+                <td><input type="text" placeholder="请输入科目名称" id="type"></td></tr>
+            <tr>
+                <td></td>
+                <td><button class="btn">提交</button></td></tr>
+        </table>
+    </div>
+<!--    查看已有-->
+    <div class="tableOne">
+        <table>
+            <tr class="need_append">
+                <td>已有科目类型</td>
+            </tr>
+
+        </table>
+    </div>
+<!-- 删除-->
+<!--显示后删除-->
+    <div>
+
+    </div>
+<!--修改-->
+
+</body>
+<script src="js/jquery-3.5.1.js"></script>
+<script>
+
+<!--    点击提交-->
+    $("#btn").click(function (){
+        let text = $("#type").val();
+        let acc = localStorage.getItem("acc");
+        let jsonData = {};
+        jsonData.text = text;
+        jsonData.acc = acc;
+        $.ajax({
+            url:"http://localhost:8080/exam_TBDB_SSM2/newSubjectType",
+            type:"post",
+            contentType:"application/json",
+            dataType:"json",
+            data:JSON.stringify(jsonData),
+            success:function (result){
+                let index = parent.layer.getFrameIndex(window.name);
+                console.log(result);
+                if (result){
+                    parent.layer.close(index);
+                    parent.layer.msg("添加成功！")
+                }else {
+                    parent.layer.close(index);
+                    parent.layer.msg("添加失败！")
+                }
+            }
+        })
+    })
+
+//修改科目类型
+function modifyBtn(){
+    let oldsubject = this.parent().val();
+    let newsubject = this.prev().val();
+    let acc = localStorage.getItem("acc");
+    let jsonData={};
+    jsonData.acc = acc;
+    jsonData.oldsubject = oldsubject;
+    jsonData.newsubject = newsubject;
+    $.ajax({
+        url:"http://localhost:8080/exam_TBDB_SSM2/modifySubjectType",
+        type:"post",
+        contentType:"application/json",
+        dataType:"json",
+        data:JSON.stringify(jsonData),
+        success:function (result){
+            if (result){
+                alert("操作成功！");
+                reload();
+            }else{
+                alert("操作失败！");            }
+        }
+    })
+
+
+
+}
+
+//删除科目类型
+function deleteBtn(){
+    this.parent().remove();
+    let acc = localStorage.getItem("acc");
+    let subject = this.val();
+    let jsonData={};
+    jsonData.acc = acc;
+    jsonData.subject=subject;
+    $.ajax({
+        url:"http://localhost:8080/exam_TBDB_SSM2/deleteSubjectType",
+        type:"post",
+        contentType:"application/json",
+        data:JSON.stringify(jsonData),
+        dataType:"json",
+        success:function (result){
+            if (result){
+                alert("操作成功！");
+                reload();
+            }else{
+                alert("操作失败！");
+            }
+        }
+    })
+}
+
+//查看所有类型
+$(document).ready(reload());
+function reload(){
+    let acc = localStorage.getItem("acc");
+    let jsonData = {};
+    jsonData.acc = acc;
+    let deleteBtn = $("<button>删除</button>").click(deleteBtn());
+    let modifyBtn = $("<button>修改</button>").click(modifyBtn());
+    let inputFrame = $("<input type='text'>");
+    $.ajax({
+        url:"http://localhost:8080/exam_TBDB_SSM2/queryAllQuestionType",
+        type:"post",
+        contentType:"application/json",
+        dataType:"json",
+        data:JSON.stringify(jsonData),
+        success:function (result){
+            for (let i = 0;i<result.subject.length;i++){
+                $(".need_append").appendChild($("<td class='content-mod-delete'></td>").text(result.subject[i]));
+            }
+            $(".content-mod-delete").appendChild(deleteBtn);
+            $(".content-mod-delete").appendChild(inputFrame);
+            $(".content-mod-delete").appendChild(modifyBtn);
+        }
+    })
+}
+</script>
+</html>
