@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加试卷</title>
+    <style>
+        #content{
+            width: 500px;
+            height: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <span>试卷类型：</span>
+    <select name="" id="subject">
+        <option value="">默认分组</option>
+    </select>
+    <br>
+    <span>试卷标题：</span><textarea name="" id="examname" cols="30" rows="3"></textarea>
+    <button onclick="create_start()">确定</button>
+</div>
+</body>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+    // window.onload
+    function create_start(){
+        window.location.href="selectQuestion.html";
+        let jsonData={}
+        jsonData.type=$("#subject").val();
+        jsonData.examname=$("#examname").val();
+        $.ajax({
+            url:"http://localhost:8080/exam_TBDB_SSM2/createTestPaper",
+            type:"post",
+            contentType:"application/json",
+            dataType:"json",
+            data:JSON.stringify(jsonData),
+            success:function (result){
+                if (result){
+                    window.location.href="selectQuestion.html";
+                }else {
+                    alert("试卷创建失败！")
+                }
+            }
+
+        })
+    }
+</script>
+</html>

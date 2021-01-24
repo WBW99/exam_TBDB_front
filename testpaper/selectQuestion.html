@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>试题设置</title>
+    <link rel="stylesheet" href="../bootstrap-table/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap-table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../assets/css/modules/layer/default/layer.css">
+    <style>
+        #wordicon{
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="wordicon">
+    <a href="javascript:void(0);" onclick="addQuestion()" >+题库选题</a>
+</div>
+<div>
+    <table id="selectAll"></table>
+</div>
+<div>
+    <button>删除</button>
+</div>
+</body>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../bootstrap-table/bootstrap-table.js"></script>
+<script src="../bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../js/selectAllQuestion.js"></script>
+<script src="../layer/layer.js"></script>
+<script>
+    function addQuestion(){
+        layer.open({
+            type:2,
+            title:"题库选题",
+            maxmin:false,
+            shadeClose:false,
+            area:['80%','80%'],
+            content:'addQuestion.html',
+        })
+    }
+</script>
+<script>
+    let arr1=new Array();
+    let array1=$(".select1");
+    let length1 = array.length;
+    function add(){
+        for (let i=0;i<length1;i++){
+            if (array1.eq(i).prop("checked")){
+                arr1.push(array1.eq(i).val());
+            }
+        }
+        $.ajax({
+            url:"http://localhost:8080/exam_TBDB_SSM2/deleteExam",
+            type:"post",
+            contentType:"application/json",
+            dataType:"json",
+            data:JSON.stringify(arr1),
+            success:function (result){
+                if (result){
+                    reload();
+                }else{
+                    alert("删除失败！！！");
+                }
+            }
+        })
+    }
+</script>
+</html>

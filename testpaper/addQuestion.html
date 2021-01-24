@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>题库选题</title>
+    <link rel="stylesheet" href="../bootstrap-table/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap-table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../assets/css/modules/layer/default/layer.css">
+</head>
+<body>
+<div>
+    <table id="selectQuestionTable"></table>
+</div>
+<div>
+    <button onclick="add()">添加</button>
+</div>
+</body>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../bootstrap-table/bootstrap-table.js"></script>
+<script src="../bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../layer/layer.js"></script>
+<script src="../js/addQuestion.js"></script>
+<script>
+    let arr=new Array();
+    let array=$(".select");
+    let length = array.length;
+    function add(){
+        for (let i=0;i<length;i++){
+            if (array.eq(i).prop("checked")){
+                arr.push(array.eq(i).val());
+            }
+        }
+        $.ajax({
+            url:"http://localhost:8080/exam_TBDB_SSM2/addExam",
+            type:"post",
+            contentType:"application/json",
+            dataType:"json",
+            data:JSON.stringify(arr),
+            success:function (result){
+                if (result){
+                    reload();
+                }else{
+                    alert("添加失败！！！");
+                }
+            }
+        })
+    }
+</script>
+</html>

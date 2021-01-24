@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>已存在试卷</title>
+    <link rel="stylesheet" href="../bootstrap-table/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap-table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../assets/css/modules/layer/default/layer.css">
+    <Style>
+        #otherbtn{
+            line-height: 50px;
+        }
+        #otherbtn1{
+            width: 100px;
+            color: blue;
+            text-align: center;
+        }
+    </Style>
+</head>
+<body>
+<div>
+    <div id="otherbtn">
+        <div id="otherbtn1">
+            <a href="javascript:void(0);" onclick="create_exam_paper()" style="margin: auto">+添加试卷</a>
+        </div>
+
+    </div>
+    <table id="testpaperbank"></table>
+</div>
+</body>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../bootstrap-table/bootstrap-table.js"></script>
+<script src="../bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../js/TestPaperBank.js"></script>
+<script src="../layer/layer.js"></script>
+<script>
+    function create_exam_paper(){
+        layer.open({
+            type:2,//可传入的值有：0（信息框，默认） 1、页面层 2、iframe层 3、加载层 4、tips层
+            title:"新建试卷",
+            maxmin:false,
+            shadeClose:false,
+            area:['80%','80%'],
+            content:'createExamPaper.html'//设置弹出层打开的页面
+        });
+    }
+</script>
+</html>
