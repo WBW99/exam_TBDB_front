@@ -47,14 +47,18 @@
     let arr1=new Array();
     let array1=$(".select1");
     let length1 = array.length;
+    let questionContent={};
     function add(){
         for (let i=0;i<length1;i++){
             if (array1.eq(i).prop("checked")){
-                arr1.push(array1.eq(i).val());
+                questionContent.id=array1.eq(i).val();
+                questionContent.examnaem=localStorage.getItem("examname");
+                let question=JSON.stringify(questionContent);
+                arr1.push(question);
             }
         }
         $.ajax({
-            url:"http://localhost:8080/exam_TBDB_SSM2/deleteExam",
+            url:"http://localhost:8080/exam_TBDB_SSM2/deleteExamPaperQuestion",
             type:"post",
             contentType:"application/json",
             dataType:"json",
