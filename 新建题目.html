@@ -26,6 +26,7 @@
     </table>
 </body>
 <script src="js/jquery-3.5.1.js"></script>
+<script src="js/public.js"></script>
 <script>
     $("#btn").click(function (){
         let type = $("#type").val();
@@ -38,7 +39,7 @@
         jsonData.stem = stem;
         jsonData.answer = answer;
         $.ajax({
-            url:"http://localhost:8080/exam_TBDB_SSM2/createNewQuestion",
+            url:BASIC_URL+"createNewQuestion",
             type:"POST",
             contentType:"application/json",
             dataType:"json",
@@ -68,7 +69,7 @@
             let jsonData = {};
             jsonData.acc = acc;
             $.ajax({
-                url:"http://localhost:8080/exam_TBDB_SSM/queryAllQuestionType",
+                url:BASIC_URL+"queryAllQuestionType",
                 type:"post",
                 contentType:"application/json",
                 dataType:"json",

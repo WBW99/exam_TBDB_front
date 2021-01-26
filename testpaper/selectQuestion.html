@@ -31,6 +31,7 @@
 <script src="../bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 <script src="../js/selectAllQuestion.js"></script>
 <script src="../layer/layer.js"></script>
+<script src="../js/public.js"></script>
 <script>
     function addQuestion(){
         layer.open({
@@ -58,7 +59,7 @@
             }
         }
         $.ajax({
-            url:"http://localhost:8080/exam_TBDB_SSM2/deleteExamPaperQuestion",
+            url:BASIC_URL+"deleteExamPaperQuestion",
             type:"post",
             contentType:"application/json",
             dataType:"json",

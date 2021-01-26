@@ -39,6 +39,7 @@
 
 </body>
 <script src="js/jquery-3.5.1.js"></script>
+<Script src="js/public.js"></Script>
 <script>
 
 <!--    点击提交-->
@@ -49,7 +50,7 @@
         jsonData.text = text;
         jsonData.acc = acc;
         $.ajax({
-            url:"http://localhost:8080/exam_TBDB_SSM2/newSubjectType",
+            url:BASIC_URL+"newSubjectType",
             type:"post",
             contentType:"application/json",
             dataType:"json",
@@ -78,7 +79,7 @@ function modifyBtn(){
     jsonData.oldsubject = oldsubject;
     jsonData.newsubject = newsubject;
     $.ajax({
-        url:"http://localhost:8080/exam_TBDB_SSM2/modifySubjectType",
+        url:BASIC_URL+"modifySubjectType",
         type:"post",
         contentType:"application/json",
         dataType:"json",
