@@ -22,6 +22,7 @@
 </body>
 <script src="js/jquery-3.5.1.js"></script>
 <script src="js/questionBank.js"></script>
+<script src="js/public.js"></script>
 <script>
     //传值
     function modifyInfo(id,stem,answer,score,type,createtime){
@@ -42,7 +43,7 @@
                 jsonData.stem = stem;
                 jsonData.answer = choise;
                 $.ajax({
-                    url:"http://localhost:8080/exam_TBDB_SSM/modifyQuestionContent",
+                    url:BASIC_URL+"modifyQuestionContent",
                     type:"post",
                     contentType:"application/json",
                     dataType:"json",
@@ -70,7 +71,7 @@
                 jsonData.stem = stem;
                 jsonData.answer = answer1;
                 $.ajax({
-                    url:"http://localhost:8080/exam_TBDB_SSM/modifyQuestionContent",
+                    url:BASIC_URL+"modifyQuestionContent",
                     type:"post",
                     contentType:"application/json",
                     dataType:"json",
@@ -89,8 +90,6 @@
                 })
             })
         }
-
-
     }
 </script>
 </html>
