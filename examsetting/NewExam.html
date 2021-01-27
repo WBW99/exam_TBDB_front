@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新建考试</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>试卷名：</td>
+                <td><input type="text"></td></tr>
+            <tr>
+                <td>考试时长：</td>
+                <td><input type="text"></td></tr>
+            <tr>
+                <td>考试开始时间：</td>
+                <td><input type="text"></td></tr>
+            <tr>
+                <td>考试结束时间：</td>
+                <td><input type="text"></td></tr>
+            <tr>
+                <td></td>
+                <td><button>提交</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src="../js/jquery-3.5.1.js"></script>
+<script>
+    $("button").click(function (){
+        let examName = $("input").eq(0).val();
+        let examTime = $("input").eq(1).val();
+        let startTime = $("input").eq(2).val();
+        let endTime = $("input").eq(3).val();
+        let acc = localStorage.getItem("acc");
+        let jsonData = {};
+        jsonData.examname = examName;
+        jsonData.examtime = examTime;
+        jsonData.starttime = startTime;
+        jsonData.endtime = endTime;
+        jsonData.acc = acc;
+        $.ajax({
+            url:"http://localhost:8080/exam_TBDB_SSM2/createTest",
+            type:"post",
+            contentType:"application/json",
+            data:JSON.stringify(jsonData),
+            dataType:"json",
+            success:function (result){
+                if (result){
+                    reload();
+                }else{
+                    alert("操作失败！")
+                }
+            }
+        })
+    })
+
+
+</script>
+</html>

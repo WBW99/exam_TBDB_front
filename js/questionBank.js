@@ -18,7 +18,8 @@ function reLoad(){
             //上传到服务器的参数
             var temp = {
                 offset: params.offset, //sql语句起使索引
-                pageNumber: params.limit  //每页显示的数量
+                pageNumber: params.limit //每页显示的数量
+                // acc:localStorage.getItem("acc")
             };
             return JSON.stringify(temp);
         },
