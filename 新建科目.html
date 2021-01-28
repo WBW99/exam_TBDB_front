@@ -46,7 +46,7 @@ $(document).ready(function (){
     let jsonData={};
     jsonData.acc = acc;
     $.ajax({
-        url:"http://localhost:8080/UtroTestSSM/queryAllQuestionType",
+        url:"http://localhost:8080/exam_TBDB_SSM2/queryAllQuestionType",
         type:"post",
         contentType:"application/json",
         data:JSON.stringify(jsonData),
@@ -72,7 +72,7 @@ $(document).ready(function (){
         jsonData.subject = subject;
         jsonData.acc = acc;
         $.ajax({
-            url:"http://localhost:8080/UtroTestSSM/newSubjectType",
+            url:"http://localhost:8080/exam_TBDB_SSM2/newSubjectType",
             type:"post",
             contentType:"application/json",
             dataType:"json",
@@ -103,7 +103,7 @@ $(document).ready(function (){
         jsonData.acc = acc;
         jsonData.subject=subject;
         $.ajax({
-            url:"http://localhost:8080/UtroTestSSM/deleteSubjectType",
+            url:"http://localhost:8080/exam_TBDB_SSM2/deleteSubjectType",
             type:"post",
             contentType:"application/json",
             data:JSON.stringify(jsonData),

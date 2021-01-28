@@ -3,7 +3,7 @@ $(function (){
 })
 
 function reload(){
-    let url = "http://localhost:8080/UtroTestSSM/queryAllExamPaper";
+    let url = "http://localhost:8080/exam_TBDB_SSM2/queryAllExamPaper";
     $("#testpaperbank").bootstrapTable({
         url:url,
         method:'POST',

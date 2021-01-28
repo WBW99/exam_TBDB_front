@@ -2,7 +2,7 @@ $(document).ready(reLoad());
 
 //  问题：bootstraptable如何携带要传输的数据回后端，依据扫描数据库
 function reLoad(){
-    let url = "http://localhost:8080/UtroTestSSM/selectAllQuestion";
+    let url = "http://localhost:8080/exam_TBDB_SSM2/selectAllQuestion";
     $("#myTable").bootstrapTable({
         url:url,
         method:'POST',
@@ -89,7 +89,7 @@ function removeInfo(id){
     let jsonData = {};
     jsonData.id = id;
     $.ajax({
-        url:"http://localhost:8080/UtroTestSSM/deleteQuestion",
+        url:"http://localhost:8080/exam_TBDB_SSM2/deleteQuestion",
         type:"post",
         contentType:"application/json",
         data:JSON.stringify(jsonData),

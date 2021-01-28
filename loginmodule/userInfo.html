@@ -24,7 +24,7 @@
         let jsonData={};
         jsonData.acc = localStorage.getItem("acc");
         $.ajax({
-            url:"http://localhost:8080/UtroTestSSM/userCheckInfo",
+            url:"http://localhost:8080/exam_TBDB_SSM2/userCheckInfo",
             type:"post",
             contentType:"application/json",
             data:JSON.stringify(jsonData),
