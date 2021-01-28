@@ -1,10 +1,8 @@
-$(function (){
-    reLoad();
-})
+$(document).ready(reLoad());
 
 //  问题：bootstraptable如何携带要传输的数据回后端，依据扫描数据库
 function reLoad(){
-    let url = BASIC_URL+"selectAllQuestion";
+    let url = "http://localhost:8080/UtroTestSSM/selectAllQuestion";
     $("#myTable").bootstrapTable({
         url:url,
         method:'POST',
@@ -18,8 +16,8 @@ function reLoad(){
             //上传到服务器的参数
             var temp = {
                 offset: params.offset, //sql语句起使索引
-                pageNumber: params.limit //每页显示的数量
-                // acc:localStorage.getItem("acc")
+                pageNumber: params.limit, //每页显示的数量
+                acc:localStorage.getItem("acc")
             };
             return JSON.stringify(temp);
         },
@@ -77,8 +75,10 @@ function reLoad(){
                 width: '100px', // 列宽
                 formatter:function (value,row,index){
                     //若将来 设计到字符串数据传入参数，需要设置单引号
-                    let a = '<a href="javascript:void(0);" onclick="removeInfo(\''+row.id+'\')">删除</a>'
-                    let b ='<a href="javascript:void(0);" onclick="layerClick()" onclick="modifyInfo(\''+row.id+'\',\''+row.stem+'\',\''+row.answer+'\',\''+row.score+'\',\''+row.type+'\',\''+row.createtime+'\'"></a>'
+                    let del = '<a href="javascript:void(0);" onclick="removeInfo(\''+row.id+'\')">删除 </a>'
+                    // let b ='<a href="javascript:void(0);" onclick="layerClick()" onclick="modifyInfo(\''+row.id+'\',\''+row.stem+'\',\''+row.answer+'\',\''+row.score+'\',\''+row.type+'\'"> 修改</a>'
+                    let modify = '<a href="javascript:void(0);" onclick="layerClick()">修改</a>';
+                    return del+modify;
                 }
 
             }]
@@ -89,13 +89,14 @@ function removeInfo(id){
     let jsonData = {};
     jsonData.id = id;
     $.ajax({
-        url:BASIC_URL+"deleteQuestion",
+        url:"http://localhost:8080/UtroTestSSM/deleteQuestion",
         type:"post",
-        contextType:"application/json",
-        dataType: "json",
+        contentType:"application/json",
         data:JSON.stringify(jsonData),
+        dataType: "json",
         success:function (result){
             if (result){
+                alert("操作成功！")
                 reLoad();
             }else{
                 alert("操作失败！")

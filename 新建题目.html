@@ -21,26 +21,34 @@
             <td>答案</td>
             <td><input type="text" id="answer"></td></tr>
         <tr>
+            <td>分数</td>
+            <td><input type="text" id="score"></td>
+        </tr>
+        <tr>
             <td><button id="btn">提交</button></td>
         </tr>
     </table>
 </body>
 <script src="js/jquery-3.5.1.js"></script>
-<script src="js/public.js"></script>
 <script>
+    //提交按钮
     $("#btn").click(function (){
         let type = $("#type").val();
-        let subject = $("#subject").val();
+        let subject = $("#subject option:selected").val();
         let stem = $("#stem").val();
         let answer = $("#answer").val();
-        let jsonData = {}
+        let acc=localStorage.getItem("acc");
+        let score = $("#score").val();
+        let jsonData = {};
         jsonData.type = type;
         jsonData.subject = subject;
         jsonData.stem = stem;
         jsonData.answer = answer;
+        jsonData.acc=acc;
+        jsonData.score = score;
         $.ajax({
-            url:BASIC_URL+"createNewQuestion",
-            type:"POST",
+            url:"http://localhost:8080/UtroTestSSM/createNewQuestion",
+            type:"post",
             contentType:"application/json",
             dataType:"json",
             data:JSON.stringify(jsonData),
@@ -69,14 +77,14 @@
             let jsonData = {};
             jsonData.acc = acc;
             $.ajax({
-                url:BASIC_URL+"queryAllQuestionType",
+                url:"http://localhost:8080/UtroTestSSM/queryAllQuestionType",
                 type:"post",
                 contentType:"application/json",
                 dataType:"json",
                 data:JSON.stringify(jsonData),
                 success:function (result){
-                    for (let i = 0;i < result.subject.length;i++){
-                        $("#subject").appendChild($("<option></option>").text(result.subject[i]));
+                    for (let i = 0;i < result.length;i++){
+                        $("#subject").append($("<option></option>").text(result[i]));
                     }
                 }
             })

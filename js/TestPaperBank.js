@@ -3,7 +3,7 @@ $(function (){
 })
 
 function reload(){
-    let url = BASIC_URL+"queryAllExamPaper";
+    let url = "http://localhost:8080/UtroTestSSM/queryAllExamPaper";
     $("#testpaperbank").bootstrapTable({
         url:url,
         method:'POST',

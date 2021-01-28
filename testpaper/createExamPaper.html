@@ -23,18 +23,17 @@
 </div>
 </body>
 <script src="../js/jquery-1.11.1.min.js"></script>
-<script src="../js/public.js"></script>
 <script>
     // window.onload
     function create_start(){
         let ename=$("#examname").val();
         localStorage.setItem("examname",ename);
-        // window.location.href="selectQuestion.html";
+        window.location.href="selectQuestion.html";
         let jsonData={}
         jsonData.type=$("#subject").val();
         jsonData.examname=ename;
         $.ajax({
-            url:BASIC_URL+"createTestPaper",
+            url:"http://localhost:8080/UtroTestSSM/createTestPaper",
             type:"post",
             contentType:"application/json",
             dataType:"json",

@@ -3,7 +3,7 @@ $(function (){
 })
 
 function reload(){
-    let url = "http://localhost:8080/exam_TBDB_SSM2/selectAllQuestion";
+    let url = "http://localhost:8080/UtroTestSSM/selectAllQuestion";
     $("#selectQuestionTable").bootstrapTable({
         url:url,
         method:'POST',

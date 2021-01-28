@@ -54,17 +54,23 @@
 <script>
     $(".xiayibu").eq(0).click(function (){
         let jsonData={};
-        jsonData.acc=$(".txtphone").eq(0).val();
-        jsonData.pwd=$(".txtphone").eq(1).val();
+        let acc = $(".txtphone").eq(0).val();
+        let pwd = $(".txtphone").eq(1).val();
+        jsonData.acc=acc;
+        jsonData.pwd=pwd;
         $.ajax({
-            url:"http://localhost:8080/exam_TBDB_SSM/login",
+            url:"http://localhost:8080/UtroTestSSM/login",
             type:"post",
             contentType:"application/json",
             dataType:"json",
             data:JSON.stringify(jsonData),
             success:function (result){
-                if (result.mark){
-                    window.location.href="homepage.html";
+                console.log(result)
+                if (result){
+                    localStorage.setItem("acc",acc.toString())
+                    window.location.href="../mainView.html";
+                }else{
+                    alert("账号密码错误！")
                 }
             }
         })

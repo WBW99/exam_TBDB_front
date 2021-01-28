@@ -31,7 +31,6 @@
 <script src="../bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 <script src="../js/selectAllQuestion.js"></script>
 <script src="../layer/layer.js"></script>
-<script src="../js/public.js"></script>
 <script>
     function addQuestion(){
         layer.open({
@@ -59,7 +58,7 @@
             }
         }
         $.ajax({
-            url:BASIC_URL+"deleteExamPaperQuestion",
+            url:"http://localhost:8080/UtroTestSSM/deleteExamPaperQuestion",
             type:"post",
             contentType:"application/json",
             dataType:"json",

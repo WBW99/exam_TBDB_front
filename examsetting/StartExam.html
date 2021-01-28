@@ -22,43 +22,14 @@
                     <td>结束时间：</td>
                     <td><span class="examEnd"></span></td></tr>
                 <tr>
-                    <td>请输入考试校验码:</td>
-                    <td><input type="text" class="uuid"></td>
-                </tr>
-                <tr>
                     <td></td>
-                    <td><button class="btn">开始考试</button></td></tr>
+                    <td><button>分发试卷</button></td></tr>
             </table>
         </div>
     </div>
 </body>
 <script src="../js/jquery-3.5.1.js"></script>
 <script>
-<!--    获取对应信息填入其中-->
-    let examName = $(".examName").val();
-    let examTime = $(".examTime").val();
-    let examStart = $(".examStart").val();
-    let examEnd = $(".examEnd").val();
-$(".btn").click(function (){
-    let uuid = $(".uuid").val();
-    let jsonData={};
-    jsonData.uuid = uuid;
-    $.ajax({
-        url:"http://localhost:8080/exam_TBDB_SSM2/startTest",
-        type:"post",
-        contentType:"application/json",
-        data:JSON.stringify(jsonData),
-        dataType:"json",
-        success:function (result){
-            if (result){
-            //    显示题目页面
-               window.location.href=""
-            } else{
-                alert("无考试资格！")
-            }
-        }
-    })
-
-})
+    $()
 </script>
 </html>

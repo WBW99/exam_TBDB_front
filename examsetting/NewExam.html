@@ -9,16 +9,16 @@
         <table>
             <tr>
                 <td>试卷名：</td>
-                <td><input type="text"></td></tr>
+                <td><input type="text" id="examName"></td></tr>
             <tr>
                 <td>考试时长：</td>
-                <td><input type="text"></td></tr>
+                <td><input type="text" id="examTime"></td></tr>
             <tr>
                 <td>考试开始时间：</td>
-                <td><input type="text"></td></tr>
+                <td><input type="text" id="startTime"></td></tr>
             <tr>
                 <td>考试结束时间：</td>
-                <td><input type="text"></td></tr>
+                <td><input type="text" id="endTime"></td></tr>
             <tr>
                 <td></td>
                 <td><button>提交</button></td>
@@ -29,19 +29,19 @@
 <script src="../js/jquery-3.5.1.js"></script>
 <script>
     $("button").click(function (){
-        let examName = $("input").eq(0).val();
-        let examTime = $("input").eq(1).val();
-        let startTime = $("input").eq(2).val();
-        let endTime = $("input").eq(3).val();
+        let examName = $("#examName").val();
+        let examTime = $("#examTime").val();
+        let startTime = $("#startTime").val();
+        let endTime = $("#endTime").val();
         let acc = localStorage.getItem("acc");
         let jsonData = {};
-        jsonData.examname = examName;
-        jsonData.examtime = examTime;
-        jsonData.starttime = startTime;
-        jsonData.endtime = endTime;
+        jsonData.examName = examName;
+        jsonData.examTime = examTime;
+        jsonData.startTime = startTime;
+        jsonData.endTime = endTime;
         jsonData.acc = acc;
         $.ajax({
-            url:"http://localhost:8080/exam_TBDB_SSM2/createTest",
+            url:"http://localhost:8080/UtroTestSSM/createTest",
             type:"post",
             contentType:"application/json",
             data:JSON.stringify(jsonData),

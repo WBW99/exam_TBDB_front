@@ -22,8 +22,8 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;" id="username"></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="">帮助中心</a></dd>
-                        <dd><a href="login.html">退出</a></dd>
+                        <dd><a href="javascript:void(0);onclick = userInfo()">用户信息</a></dd>
+                        <dd><a href="loginmodule/index.html">退出</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -105,9 +105,19 @@
     <script src="index.js" data-main="home"></script>
     <script src="js/jquery-3.5.1.js"></script>
     <script>
-<!--        目前写了ACC作为右上角的内容-->
+//        目前写了ACC作为右上角的内容
         let username = localStorage.getItem("acc");
         $("#username").text("用户"+username);
+        function userInfo(){
+            layer.open({
+                type:2,
+                title:'userInfo',
+                maxmin:false,
+                shadeClose:false,
+                area:['80%','80%'],
+                content:'loginmodule/userInfo.html'
+            })
+        }
     </script>
 </body>
 </html>

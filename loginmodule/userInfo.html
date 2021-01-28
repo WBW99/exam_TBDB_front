@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserInfo</title>
+</head>
+<body>
+    <div class="content">
+        <table>
+            <tr><td>用户名</td>
+                <td><span class="username"></span></td></tr>
+            <tr>
+                <td>手机号码</td>
+                <td><span class="phoneNumber"></span></td></tr>
+            <tr>
+                <td>邮箱</td>
+                <td><span class="email"></span></td></tr>
+        </table>
+    </div>
+</body>
+<script src="../js/jquery-3.5.1.js"></script>
+<script>
+    $(document).ready(function (){
+        let jsonData={};
+        jsonData.acc = localStorage.getItem("acc");
+        $.ajax({
+            url:"http://localhost:8080/UtroTestSSM/userCheckInfo",
+            type:"post",
+            contentType:"application/json",
+            data:JSON.stringify(jsonData),
+            dataType:"json",
+            success:function(result){
+                $(".username").text(result.username);
+                $(".phoneNumber").text(result.phone);
+                $(".email").text(result.email);
+            }
+
+        })
+    })
+</script>
+</html>

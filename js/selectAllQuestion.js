@@ -3,7 +3,7 @@ $(function (){
 })
 
 function reload(){
-    let url = "http://localhost:8080/exam_TBDB_SSM2/selectRelatedQestion";
+    let url = "http://localhost:8080/UtroTestSSM/selectRelatedQestion";
     $("#selectAll").bootstrapTable({
         url:url,
         method:'POST',
@@ -75,7 +75,7 @@ function removeExam(){
     let jsonData={};
     jsonData.id=id;
     $.ajax({
-        url:"http://localhost:8080/exam_TBDB_SSM2/deleteExam",
+        url:"http://localhost:8080/UtroTestSSM/deleteExam",
         type:"post",
         contentType:"application/json",
         dataType: "json",

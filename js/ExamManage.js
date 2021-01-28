@@ -3,7 +3,7 @@ $(function (){
 })
 function reLoad(){
     //查询所有考试
-    let url = "http://localhost:8080/exam_TBDB_SSM2/queryExamPaper";
+    let url = "http://localhost:8080/UtroTestSSM/queryExamPaper";
     $("#exam_table").bootstrapTable({
         url:url,
         method:"POST",
@@ -70,7 +70,7 @@ function removeInfo(id){
     let jsonData={};
     jsonData.id=id;
     $.ajax({
-        url:"http://localhost:8080/exam_TBDB_SSM2/deleteTest",
+        url:"http://localhost:8080/UtroTestSSM/deleteTest",
         type:"post",
         contentType:"application/json",
         dataType:"json",

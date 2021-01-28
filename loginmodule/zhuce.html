@@ -69,14 +69,16 @@
         jsonData.phone=$(".txtphone").eq(3).val();
         jsonData.email=$(".txtphone").eq(4).val();
         $.ajax({
-            url:"http://localhost:8080/exam_TDBD_SSM/register",
+            url:"http://localhost:8080/UtroTestSSM/register",
             type:"post",
             contentType:"application/json",
             dataType:"json",
             data:JSON.stringify(jsonData),
             success:function (result){
-                if (result.mark){
-                    window.location.href="zhuceSucc.html";
+                if (result){
+                    window.location.href="registeSuccess.html";
+                }else{
+                    alert("账号已存在！");
                 }
             }
         })

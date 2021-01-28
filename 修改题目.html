@@ -13,7 +13,11 @@
             </tr>
             <tr>
                 <td>答案</td>
-                <td id="type"></td></tr>
+                <td><input type="text" id="answer"></td></tr>
+            <tr>
+                <td>分值</td>
+                <td><input type="text" id="score"></td>
+            </tr>
             <tr>
                 <td></td>
                 <td><button id="btn">提交</button></td></tr>
@@ -22,63 +26,26 @@
 </body>
 <script src="js/jquery-3.5.1.js"></script>
 <script src="js/questionBank.js"></script>
-<script src="js/public.js"></script>
 <script>
     //传值
-    function modifyInfo(id,stem,answer,score,type,createtime){
-        if (type==="单选题"){
-            $("#type").appendChild($("<input type='radio' class='newRadio'>").text("A"))
-            $("#type").appendChild($("<input type='radio' class='newRadio'>").text("B"))
-            $("#type").appendChild($("<input type='radio' class='newRadio'>").text("C"))
-            $("#type").appendChild($("<input type='radio' class='newRadio'>").text("D"))
+    function modifyInfo(id,stem,answer,score,type){
             $("#but").click(function (){
                 let stem = $("#stem").val();
-                for (let o = 1;o<$(".newRadio").length;o++){
-                    if ($(".newRadio")[o].checked){
-                        var choise = this.val();
-                    }
-                }
+                let answer = $("#answer")
+                let score = $("#score")
                 let jsonData={};
                 jsonData.id = id;
                 jsonData.stem = stem;
-                jsonData.answer = choise;
+                jsonData.answer = answer;
+                jsonData.score = score;
                 $.ajax({
-                    url:BASIC_URL+"modifyQuestionContent",
+                    url:"http://localhost:8080/UtroTestSSM/modifyQuestionContent",
                     type:"post",
                     contentType:"application/json",
                     dataType:"json",
                     data:JSON.stringify(jsonData),
                     success:function (result){
                         let index = parent.layer.getFrameIndex(window.name);
-                        console.log(result);
-                        if (result){
-                            parent.layer.close(index);
-                            parent.layer.msg("修改成功！")
-                        }else {
-                            parent.layer.close(index);
-                            parent.layer.msg("修改失败！")
-                        }
-                    }
-                })
-            })
-        }else{
-            $("#type").appendChild($("<input type='text' class='content'>").val(answer))
-            $("#but").click(function (){
-                let stem = $("#stem").val();
-                let answer1 = $(".content").val();
-                let jsonData={};
-                jsonData.id = id;
-                jsonData.stem = stem;
-                jsonData.answer = answer1;
-                $.ajax({
-                    url:BASIC_URL+"modifyQuestionContent",
-                    type:"post",
-                    contentType:"application/json",
-                    dataType:"json",
-                    data:JSON.stringify(jsonData),
-                    success:function (result){
-                        let index = parent.layer.getFrameIndex(window.name);
-                        console.log(result);
                         if (result){
                             parent.layer.close(index);
                             parent.layer.msg("修改成功！")
@@ -90,6 +57,5 @@
                 })
             })
         }
-    }
 </script>
 </html>
