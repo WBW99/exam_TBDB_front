@@ -22,14 +22,24 @@
                     <td>结束时间：</td>
                     <td><span class="examEnd"></span></td></tr>
                 <tr>
+                    <td>试卷id:</td>
+                    <td><span class="examId"></span></td>
+                </tr>
+                <tr>
                     <td></td>
-                    <td><button>分发试卷</button></td></tr>
+                    <td><button class="send_paper_btn">分发试卷</button></td></tr>
             </table>
         </div>
     </div>
 </body>
 <script src="../js/jquery-3.5.1.js"></script>
+<script src="../layer/layer.js"></script>
 <script>
-    $()
+    //分发试卷，产生一个uuid和网页连接 新开一个页面
+    $(".send_paper_btn").click(function (){
+        let url = "http://localhost:8080/exam_TBDB_SSM2/examsetting/avalidate_code.html";
+        localStorage.setItem("url",url);
+        window.location.href = "send_paper.html"
+    })
 </script>
 </html>

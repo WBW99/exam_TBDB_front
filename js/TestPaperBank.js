@@ -50,9 +50,10 @@ function reload(){
                 width: '300px', // 列宽
                 formatter:function (value,row,index){
                     //若将来 设计到字符串数据传入参数，需要设置单引号
-                    let a = '<a href="javascript:void(0);" onclick="removeExam(\''+row.id+'\')">删除</a>'
-                    let b ='<a href="javascript:void(0);" onclick="layerClick()" onclick="modifyInfo(\''+row.id+'\',\''+row.examname+'\',\''+row.createtime+'\'"></a>'
-                    let c = '<a href="javascript:void(0);" onclick="setExam(\''+row.id+'\')">试题设置</a>'
+                    let a = '<a href="javascript:void(0);" onclick="removeExam(\''+row.id+'\')"> 删除</a>'
+                    let b ='<a href="javascript:void(0);" onclick="layerClick()" onclick="modifyInfo(\''+row.id+'\',\''+row.examname+'\',\''+row.createtime+'\'"> 修改</a>'
+                    let c = '<a href="javascript:void(0);" onclick="setExam(\''+row.id+'\')"> 试题设置</a>'
+                    return a+b+c
                 }
 
             }]

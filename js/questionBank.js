@@ -26,10 +26,10 @@ function reLoad(){
                 title: 'id',
                 align: "center",
                 halign: "center",
-                field: "id"
-               /* formatter:function (value,row,index){
+                // field: "id"
+               formatter:function (value,row,index){
                     return index+1;
-                }*/
+                }
 
             },{
             title:'科目',
@@ -97,7 +97,6 @@ function removeInfo(id){
         success:function (result){
             if (result){
                 alert("操作成功！")
-                reLoad();
             }else{
                 alert("操作失败！")
             }

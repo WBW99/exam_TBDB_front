@@ -27,6 +27,7 @@
     </div>
 </body>
 <script src="../js/jquery-3.5.1.js"></script>
+<script src = "../js/ExamManage.js"></script>
 <script>
     $("button").click(function (){
         let examName = $("#examName").val();
@@ -35,10 +36,10 @@
         let endTime = $("#endTime").val();
         let acc = localStorage.getItem("acc");
         let jsonData = {};
-        jsonData.examName = examName;
-        jsonData.examTime = examTime;
-        jsonData.startTime = startTime;
-        jsonData.endTime = endTime;
+        jsonData.examname = examName;
+        jsonData.examtime = examTime;
+        jsonData.starttime = startTime;
+        jsonData.endtime = endTime;
         jsonData.acc = acc;
         $.ajax({
             url:"http://localhost:8080/exam_TBDB_SSM2/createTest",
@@ -47,10 +48,14 @@
             data:JSON.stringify(jsonData),
             dataType:"json",
             success:function (result){
+                let index = parent.layer.getFrameIndex(window.name);
                 if (result){
-                    reload();
+                    parent.layer.close(index);
+                    parent.layer.msg("创建成功！")
+
                 }else{
-                    alert("操作失败！")
+                    parent.layer.close(index);
+                    parent.layer.msg("创建失败！")
                 }
             }
         })
